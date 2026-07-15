@@ -18,22 +18,23 @@ export async function generateMetadata({ params }) {
       return {
         title: `${nota.titulo} | Habitantes del Rock`,
         description: nota.extracto || "Lee la crónica completa y mira la galería fotográfica.",
-        // 1. FORZAMOS LA URL CANÓNICA PARA QUE FACEBOOK SEPA QUE ES ESTA PÁGINA
         alternates: {
           canonical: `${siteUrl}/nota/${id}`,
         },
         openGraph: {
           title: nota.titulo,
           description: nota.extracto || "Cobertura y fotografía de una sola pieza.",
-          // 2. LA URL COMPLETA ES VITAL PARA QUE FACEBOOK NO SE PIERDA
           url: `${siteUrl}/nota/${id}`, 
-          images: [{ 
-            url: nota.imagen,
-            width: 1200,
-            height: 630,
-            alt: nota.titulo
-          }],
           type: 'article',
+          images: [
+            { 
+              url: nota.imagen,
+              width: 1200,
+              height: 630,
+              alt: nota.titulo,
+              type: 'image/jpeg'
+            }
+          ],
         },
         twitter: {
           card: 'summary_large_image',
