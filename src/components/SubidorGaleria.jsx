@@ -80,7 +80,7 @@ const SubidorGaleria = ({ onGaleriaSubida, imagenesActuales = [] }) => {
           {archivosSubiendo.map((archivo, index) => (
             <div key={index} className="flex items-center gap-3 text-xs text-gray-400">
               <span className="truncate w-32">{archivo.nombre}</span>
-              <div className="flex-grow bg-gray-800 rounded-full h-1.5">
+              <div className="grow bg-gray-800 rounded-full h-1.5">
                 <div className="bg-yellow-500 h-1.5 rounded-full transition-all duration-300" style={{ width: `${archivo.progreso}%` }}></div>
               </div>
             </div>

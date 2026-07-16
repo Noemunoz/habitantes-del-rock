@@ -52,7 +52,7 @@ const SubidorImagen = ({ onImagenSubida, imagenActual, onImagenEliminada, carpet
       )}
 
       {imagenActual ? (
-        <div className="relative group rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f12] aspect-video md:aspect-[21/9] flex items-center justify-center shadow-inner mt-2">
+        <div className="relative group rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f12] aspect-video md:aspect-21/9 flex items-center justify-center shadow-inner mt-2">
           <img src={imagenActual} alt="Vista previa de portada" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
           <button 
             type="button"
@@ -65,7 +65,7 @@ const SubidorImagen = ({ onImagenSubida, imagenActual, onImagenEliminada, carpet
         subiendo ? (
           <div className="flex flex-col items-center justify-center h-40">
             <div className="text-gray-300 font-bold mb-3 uppercase tracking-widest text-sm animate-pulse">Subiendo... {progreso}%</div>
-            <div className="w-full bg-gray-800 rounded-full h-3 max-w-[300px] overflow-hidden border border-gray-700">
+            <div className="w-full bg-gray-800 rounded-full h-3 max-w-75 overflow-hidden border border-gray-700">
               <div className="bg-red-600 h-full transition-all duration-300" style={{ width: `${progreso}%` }}></div>
             </div>
           </div>
