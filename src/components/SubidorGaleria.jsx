@@ -43,7 +43,11 @@ const SubidorGaleria = ({ onGaleriaSubida, imagenesActuales = [] }) => {
             estadoActual.map(item => item.nombre === archivo.name ? { ...item, progreso: progresoActual } : item)
           );
         },
-        (err) => console.error("Error al subir:", err),
+        (err) => {
+          console.error("Error al subir:", err);
+          setError("🚨 " + err.message);
+          setArchivosSubiendo(estadoActual => estadoActual.filter(item => item.nombre !== archivo.name));
+        },
         async () => {
           const urlDescarga = await getDownloadURL(uploadTask.snapshot.ref);
           setUrlsSubidas(prev => [...prev, urlDescarga]);
@@ -76,7 +80,7 @@ const SubidorGaleria = ({ onGaleriaSubida, imagenesActuales = [] }) => {
           {archivosSubiendo.map((archivo, index) => (
             <div key={index} className="flex items-center gap-3 text-xs text-gray-400">
               <span className="truncate w-32">{archivo.nombre}</span>
-              <div className="grow bg-gray-800 rounded-full h-1.5">
+              <div className="flex-grow bg-gray-800 rounded-full h-1.5">
                 <div className="bg-yellow-500 h-1.5 rounded-full transition-all duration-300" style={{ width: `${archivo.progreso}%` }}></div>
               </div>
             </div>
