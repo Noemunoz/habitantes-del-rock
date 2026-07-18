@@ -6,23 +6,21 @@ import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export default function RutaPrivada({ children }) {
-  const [usuario, setUsuario] = useState(null);
   const [cargando, setCargando] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    // Escuchamos los cambios en el estado de autenticación
+    // Escuchamos si hay un usuario válido logueado en Firebase
     const cancelarSuscripcion = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUsuario(user);
+        // Si hay usuario, le damos pase libre
         setCargando(false);
       } else {
-        // Si no hay usuario, lo expulsamos inmediatamente al login
+        // Si no hay usuario, lo pateamos inmediatamente al login
         router.push('/login');
       }
     });
 
-    // Limpiamos el observador cuando se desmonta el componente
     return () => cancelarSuscripcion();
   }, [router]);
 
@@ -36,6 +34,6 @@ export default function RutaPrivada({ children }) {
     );
   }
 
-  // Si pasa la verificación y hay usuario, renderizamos la pantalla protegida (children)
+  // Si pasa la verificación, mostramos el panel
   return <>{children}</>;
 }
